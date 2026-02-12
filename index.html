@@ -2,12 +2,11 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Wedding of Romeo & Juliet</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Font Awesome untuk Ikon Sosmed -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -18,10 +17,18 @@
             --dark-brown: #7a4508;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--terracotta); color: var(--white); overflow-x: hidden; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--terracotta); 
+            color: var(--white); 
+            overflow-x: hidden; 
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
 
-        /* --- ANIMASI MEWAH: KELOPAK BUNGA --- */
+        /* --- ANIMASI KELOPAK BUNGA --- */
         #petals-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; display: none;
         }
@@ -39,105 +46,93 @@
 
         /* --- NAVIGATION --- */
         .nav-float {
-            position: fixed; bottom: 30px; right: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 999;
+            position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999;
         }
         .btn-nav {
-            width: 45px; height: 45px; background: var(--white); border-radius: 50%; 
+            width: 40px; height: 40px; background: var(--white); border-radius: 50%; 
             display: flex; justify-content: center; align-items: center; border: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; color: var(--terracotta); font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; color: var(--terracotta); font-size: 1rem;
         }
 
         /* --- COVER --- */
         #cover {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100dvh;
             background-color: var(--terracotta); display: flex; justify-content: center; align-items: center; 
             z-index: 10000; text-align: center; transition: 1.2s cubic-bezier(0.8, 0, 0.2, 1);
         }
-        .cover-box { border: 1px solid rgba(255,255,255,0.3); padding: 50px 30px; max-width: 85%; }
-        .cover-box h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; line-height: 1.2; margin-bottom: 25px; }
-        .btn-buka { background: var(--white); color: var(--terracotta); padding: 12px 35px; border: none; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 1px; }
+        .cover-box { border: 1px solid rgba(255,255,255,0.3); padding: 40px 20px; width: 85%; max-width: 400px; }
+        .cover-box h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; line-height: 1.2; margin-bottom: 20px; }
+        .btn-buka { background: var(--white); color: var(--terracotta); padding: 12px 25px; border: none; font-weight: 600; cursor: pointer; border-radius: 4px; letter-spacing: 1px; font-size: 0.9rem; }
 
         /* --- SECTIONS --- */
-        section { padding: 80px 20px; text-align: center; position: relative; }
-        .title-serif { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; margin-bottom: 10px; font-weight: 400; }
-        .sub-header { letter-spacing: 5px; font-size: 0.75rem; opacity: 0.8; text-transform: uppercase; margin-bottom: 40px; }
+        section { padding: 60px 20px; text-align: center; position: relative; }
+        .title-serif { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 10px; font-weight: 400; }
+        .sub-header { letter-spacing: 3px; font-size: 0.65rem; opacity: 0.8; text-transform: uppercase; margin-bottom: 30px; }
 
         /* --- MEMPELAI --- */
-        .mempelai { background: var(--cream); color: var(--terracotta); border-radius: 50px 50px 0 0; }
-        .couple-flex { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px; }
-        .photo-frame { width: 220px; height: 300px; border: 1px solid var(--terracotta); padding: 8px; margin: 0 auto 20px; background: white; }
+        .mempelai { background: var(--cream); color: var(--terracotta); border-radius: 40px 40px 0 0; }
+        .couple-flex { display: flex; flex-direction: column; align-items: center; gap: 50px; margin-top: 30px; }
+        .photo-frame { width: 180px; height: 250px; border: 1px solid var(--terracotta); padding: 6px; margin: 0 auto 15px; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* Media Sosial Styling */
-        .sosmed-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 15px; }
+        .sosmed-wrapper { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 10px; }
         .sosmed-link { 
-            color: var(--terracotta); text-decoration: none; font-size: 1rem; 
-            transition: 0.3s; opacity: 0.9; display: flex; align-items: center; gap: 8px;
-            background: rgba(163, 93, 11, 0.1); padding: 5px 15px; border-radius: 20px;
+            color: var(--terracotta); text-decoration: none; font-size: 0.85rem; 
+            transition: 0.3s; opacity: 0.9; display: flex; align-items: center; gap: 6px;
+            background: rgba(163, 93, 11, 0.08); padding: 4px 12px; border-radius: 20px;
         }
-        .sosmed-link:hover { transform: translateY(-3px); background: rgba(163, 93, 11, 0.2); }
-        .other-icons { display: flex; gap: 15px; margin-top: 5px; font-size: 1.2rem; }
-        .other-icons a { color: var(--terracotta); opacity: 0.6; transition: 0.3s; }
-        .other-icons a:hover { opacity: 1; }
+        .other-icons { display: flex; gap: 12px; margin-top: 5px; font-size: 1rem; }
+        .other-icons a { color: var(--terracotta); opacity: 0.6; }
 
         /* --- LOVE STORY --- */
-        .story-sec { background: var(--white); color: var(--terracotta); padding-bottom: 100px; }
-        .timeline { position: relative; max-width: 800px; margin: 50px auto 0; padding: 0 20px; }
-        .timeline::before { content: ''; position: absolute; left: 50%; width: 2px; height: 100%; background: var(--terracotta); opacity: 0.2; transform: translateX(-50%); }
-        .story-item { margin-bottom: 40px; position: relative; width: 50%; padding: 20px; text-align: right; }
-        .story-item:nth-child(even) { margin-left: 50%; text-align: left; }
-        .story-item::after { content: '❤'; position: absolute; right: -13px; top: 25px; background: var(--white); color: var(--terracotta); font-size: 1rem; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 2; }
-        .story-item:nth-child(even)::after { left: -13px; }
-        .story-date { font-weight: 600; font-size: 0.8rem; opacity: 0.6; display: block; margin-bottom: 5px; }
-        .story-content h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 5px; }
-        .story-content p { font-size: 0.85rem; line-height: 1.6; }
+        .story-sec { background: var(--white); color: var(--terracotta); padding-bottom: 80px; }
+        .timeline { position: relative; max-width: 100%; margin: 40px auto 0; padding: 0 10px; }
+        .timeline::before { content: ''; position: absolute; left: 20px; width: 1px; height: 100%; background: var(--terracotta); opacity: 0.2; }
+        .story-item { margin-bottom: 35px; position: relative; width: 100%; padding-left: 50px; text-align: left; }
+        .story-item::after { content: '❤'; position: absolute; left: 7px; top: 5px; background: var(--white); color: var(--terracotta); font-size: 0.8rem; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; z-index: 2; border: 1px solid rgba(163, 93, 11, 0.2); border-radius: 50%; }
+        .story-date { font-weight: 600; font-size: 0.75rem; opacity: 0.6; display: block; margin-bottom: 5px; }
+        .story-content h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 5px; }
+        .story-content p { font-size: 0.85rem; line-height: 1.5; }
 
         /* --- COUNTDOWN --- */
-        .countdown-sec { background: var(--dark-brown); padding: 60px 20px; }
-        .timer-container { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .countdown-sec { background: var(--dark-brown); padding: 50px 15px; }
+        .timer-container { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
         .timer-item { 
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
-            width: 75px; height: 75px; display: flex; flex-direction: column; justify-content: center; border-radius: 8px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+            width: 70px; height: 70px; display: flex; flex-direction: column; justify-content: center; border-radius: 10px;
         }
-        .timer-item b { font-size: 1.4rem; }
-        .timer-item span { font-size: 0.7rem; text-transform: uppercase; opacity: 0.7; }
+        .timer-item b { font-size: 1.2rem; }
+        .timer-item span { font-size: 0.6rem; text-transform: uppercase; opacity: 0.7; margin-top: 2px; }
 
         /* --- DETAIL ACARA --- */
-        .event-box { border: 1px solid rgba(255,255,255,0.3); padding: 30px; max-width: 500px; margin: 20px auto; border-radius: 12px; }
+        .event-box { border: 1px solid rgba(255,255,255,0.2); padding: 25px 15px; width: 100%; max-width: 320px; margin: 15px auto; border-radius: 15px; }
+        .event-box h2 { font-size: 1.8rem; }
+        .event-box p { font-size: 0.9rem; margin: 5px 0; }
 
         /* --- GALLERY --- */
         .gallery-sec { background: var(--white); color: var(--terracotta); }
-        .grid-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 900px; margin: 0 auto; }
-        .grid-gallery img { width: 100%; height: 200px; object-fit: cover; border-radius: 4px; transition: 0.5s; }
-        .grid-gallery img:hover { transform: scale(1.03); }
+        .grid-gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 0 5px; }
+        .grid-gallery img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; }
 
         /* --- GIFT --- */
         .gift-sec { background: var(--cream); color: var(--terracotta); }
         .card-gift { 
-            background: var(--white); padding: 30px; border-radius: 15px; 
-            max-width: 350px; margin: 20px auto; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            border: 1px solid rgba(163, 93, 11, 0.2);
+            background: var(--white); padding: 25px 20px; border-radius: 15px; 
+            width: 100%; max-width: 300px; margin: 15px auto; box-shadow: 0 8px 15px rgba(0,0,0,0.05);
+            border: 1px solid rgba(163, 93, 11, 0.1);
         }
-        .btn-copy { background: var(--terracotta); color: white; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.8rem; transition: 0.3s; }
-        .btn-copy:active { transform: scale(0.9); }
+        .btn-copy { background: var(--terracotta); color: white; border: none; padding: 8px 18px; border-radius: 20px; margin-top: 10px; cursor: pointer; font-size: 0.75rem; font-weight: 600; }
 
         /* --- RSVP --- */
-        .rsvp-form { max-width: 500px; margin: 0 auto; padding-top: 20px; }
+        .rsvp-form { max-width: 350px; margin: 0 auto; padding-top: 10px; }
         input, select, textarea { 
-            width: 100%; padding: 12px; margin-bottom: 15px; background: transparent; 
-            border: none; border-bottom: 1px solid var(--white); color: white; outline: none;
+            width: 100%; padding: 10px; margin-bottom: 12px; background: transparent; 
+            border: none; border-bottom: 1px solid rgba(255,255,255,0.5); color: white; outline: none; font-size: 0.9rem;
         }
-        ::placeholder { color: rgba(255,255,255,0.6); }
-        .btn-wa { width: 100%; padding: 15px; background: var(--white); color: var(--terracotta); border: none; border-radius: 40px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-wa:hover { background: var(--cream); letter-spacing: 1px; }
+        ::placeholder { color: rgba(255,255,255,0.5); }
+        .btn-wa { width: 100%; padding: 14px; background: var(--white); color: var(--terracotta); border: none; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 10px; font-size: 0.9rem; }
 
-        @media (max-width: 600px) {
-            .timeline::before { left: 20px; }
-            .story-item { width: 100%; text-align: left !important; padding-left: 50px; }
-            .story-item::after { left: 7px !important; }
-            .story-item:nth-child(even) { margin-left: 0; }
-            .grid-gallery img { height: 150px; }
-        }
+        footer { padding: 30px; opacity: 0.4; font-size: 0.6rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
@@ -149,15 +144,15 @@
     </audio>
 
     <div class="nav-float">
-        <button class="btn-nav" onclick="toHome()">🏠</button>
-        <button class="btn-nav" onclick="togglePlay()" id="playIcon">🎵</button>
+        <button class="btn-nav" onclick="toHome()"><i class="fas fa-home"></i></button>
+        <button class="btn-nav" onclick="togglePlay()" id="playIcon"><i class="fas fa-pause"></i></button>
     </div>
 
     <div id="cover">
         <div class="cover-box" data-aos="zoom-in">
-            <p class="sub-header" style="margin-bottom: 15px;">The Wedding of</p>
+            <p class="sub-header" style="margin-bottom: 10px;">The Wedding of</p>
             <h1>God's plan to<br>save you...</h1>
-            <p style="letter-spacing: 3px; margin-bottom: 30px;">ROMEO & JULIET</p>
+            <p style="letter-spacing: 2px; margin-bottom: 25px; font-size: 0.8rem;">ROMEO & JULIET</p>
             <button class="btn-buka" onclick="openInvitation()">BUKA UNDANGAN</button>
         </div>
     </div>
@@ -165,8 +160,8 @@
     <section id="home">
         <div data-aos="fade-up">
             <p class="sub-header">The Wedding of</p>
-            <h1 class="title-serif" style="font-size: 3.5rem;">Romeo & Juliet</h1>
-            <p style="letter-spacing: 5px;">25 . 12 . 2026</p>
+            <h1 class="title-serif" style="font-size: 2.8rem;">Romeo & Juliet</h1>
+            <p style="letter-spacing: 4px; font-size: 0.9rem;">25 . 12 . 2026</p>
         </div>
     </section>
 
@@ -174,10 +169,10 @@
         <h2 class="title-serif" data-aos="fade-up">Mempelai</h2>
         <div class="couple-flex">
             <!-- Mempelai Pria -->
-            <div data-aos="fade-right">
+            <div data-aos="fade-up">
                 <div class="photo-frame"><img src="foto (1).jpg" alt="Foto Romeo"></div>
-                <h3 class="title-serif" style="font-size: 1.8rem;">Romeo Putra</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 5px;">Putra dari Bapak Fulan & Ibu Fulanah</p>
+                <h3 class="title-serif" style="font-size: 1.6rem;">Romeo Putra</h3>
+                <p style="font-size: 0.8rem; margin-bottom: 8px;">Putra dari Bapak Fulan & Ibu Fulanah</p>
                 <div class="sosmed-wrapper">
                     <a href="https://instagram.com/romeoputra" target="_blank" class="sosmed-link">
                         <i class="fab fa-instagram"></i>
@@ -190,10 +185,10 @@
                 </div>
             </div>
             <!-- Mempelai Wanita -->
-            <div data-aos="fade-left">
+            <div data-aos="fade-up">
                 <div class="photo-frame"><img src="foto (2).jpg" alt="Foto Juliet"></div>
-                <h3 class="title-serif" style="font-size: 1.8rem;">Juliet Putri</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 5px;">Putri dari Bapak Fulan & Ibu Fulanah</p>
+                <h3 class="title-serif" style="font-size: 1.6rem;">Juliet Putri</h3>
+                <p style="font-size: 0.8rem; margin-bottom: 8px;">Putri dari Bapak Fulan & Ibu Fulanah</p>
                 <div class="sosmed-wrapper">
                     <a href="https://instagram.com/julietputri" target="_blank" class="sosmed-link">
                         <i class="fab fa-instagram"></i>
@@ -213,21 +208,21 @@
         <h2 class="title-serif" data-aos="fade-up">Love Story</h2>
         
         <div class="timeline">
-            <div class="story-item" data-aos="fade-right">
+            <div class="story-item" data-aos="fade-up">
                 <span class="story-date">Januari 2022</span>
                 <div class="story-content">
                     <h4>Pertemuan Pertama</h4>
                     <p>Berawal dari sebuah pertemuan tak sengaja di sebuah perpustakaan kota. Tatapan mata pertama yang membawa sejuta rasa.</p>
                 </div>
             </div>
-            <div class="story-item" data-aos="fade-left">
+            <div class="story-item" data-aos="fade-up">
                 <span class="story-date">Juni 2023</span>
                 <div class="story-content">
                     <h4>Menjalin Ikatan</h4>
                     <p>Setelah melewati banyak hari bersama, kami memutuskan untuk melangkah lebih jauh dan berkomitmen satu sama lain.</p>
                 </div>
             </div>
-            <div class="story-item" data-aos="fade-right">
+            <div class="story-item" data-aos="fade-up">
                 <span class="story-date">Desember 2024</span>
                 <div class="story-content">
                     <h4>Lamaran</h4>
@@ -263,7 +258,7 @@
     </section>
 
     <section class="gallery-sec">
-        <h2 class="title-serif" data-aos="fade-up" style="margin-bottom: 30px;">Galeri Foto</h2>
+        <h2 class="title-serif" data-aos="fade-up" style="margin-bottom: 25px;">Galeri Foto</h2>
         <div class="grid-gallery">
             <img src="foto (3).jpg" data-aos="zoom-in" alt="Galeri 1">
             <img src="foto (4).jpg" data-aos="zoom-in" alt="Galeri 2">
@@ -274,19 +269,19 @@
 
     <section class="gift-sec">
         <h2 class="title-serif" data-aos="fade-up">Wedding Gift</h2>
-        <p style="font-size: 0.9rem; margin-bottom: 30px;">Doa restu Anda adalah kado terindah, namun jika ingin memberi kado digital:</p>
-        <div class="card-gift" data-aos="flip-left">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" width="80" style="margin-bottom: 15px;" alt="BCA">
-            <p>Nomor Rekening:</p>
-            <h3 style="letter-spacing: 2px; margin: 5px 0;">1234567890</h3>
-            <p>a.n Romeo Putra</p>
+        <p style="font-size: 0.8rem; margin-bottom: 25px; padding: 0 10px;">Doa restu Anda adalah kado terindah, namun jika ingin memberi kado digital:</p>
+        <div class="card-gift" data-aos="fade-up">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" width="60" style="margin-bottom: 10px;" alt="BCA">
+            <p style="font-size: 0.8rem;">Nomor Rekening:</p>
+            <h3 style="letter-spacing: 1px; margin: 3px 0; font-size: 1.1rem;">1234567890</h3>
+            <p style="font-size: 0.8rem;">a.n Romeo Putra</p>
             <button class="btn-copy" onclick="copyText('1234567890')">Salin Rekening</button>
         </div>
-        <div class="card-gift" data-aos="flip-right">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" width="100" style="margin-bottom: 15px;" alt="Mandiri">
-            <p>Nomor Rekening:</p>
-            <h3 style="letter-spacing: 2px; margin: 5px 0;">0987654321</h3>
-            <p>a.n Juliet Putri</p>
+        <div class="card-gift" data-aos="fade-up">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg" width="80" style="margin-bottom: 10px;" alt="Mandiri">
+            <p style="font-size: 0.8rem;">Nomor Rekening:</p>
+            <h3 style="letter-spacing: 1px; margin: 3px 0; font-size: 1.1rem;">0987654321</h3>
+            <p style="font-size: 0.8rem;">a.n Juliet Putri</p>
             <button class="btn-copy" onclick="copyText('0987654321')">Salin Rekening</button>
         </div>
     </section>
@@ -306,13 +301,13 @@
         </div>
     </section>
 
-    <footer style="padding: 40px; opacity: 0.5; font-size: 0.7rem; letter-spacing: 2px;">
+    <footer style="text-align: center;">
         DESIGNED BY GEMINI_DIGITAL &copy; 2026
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
         
         const audio = document.getElementById('music');
         let playing = false;
@@ -323,18 +318,23 @@
             playing = true;
             document.getElementById('petals-container').style.display = 'block';
             createPetals();
+            // Allow scrolling after cover is gone
+            document.body.style.overflow = 'auto';
         }
+        
+        // Initial state
+        document.body.style.overflow = 'hidden';
 
         function togglePlay() {
             const btn = document.getElementById('playIcon');
             if(playing) { 
                 audio.pause(); 
                 playing = false; 
-                btn.innerText = '🔇';
+                btn.innerHTML = '<i class="fas fa-play"></i>';
             } else { 
                 audio.play(); 
                 playing = true; 
-                btn.innerText = '🎵';
+                btn.innerHTML = '<i class="fas fa-pause"></i>';
             }
         }
 
@@ -349,23 +349,36 @@
             temp.select();
             document.execCommand('copy');
             document.body.removeChild(temp);
-            alert("Nomor rekening berhasil disalin!");
+            
+            // Custom toast/alert better for mobile than standard alert
+            const toast = document.createElement('div');
+            toast.style.position = 'fixed';
+            toast.style.bottom = '100px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = 'rgba(0,0,0,0.8)';
+            toast.style.color = 'white';
+            toast.style.padding = '10px 20px';
+            toast.style.borderRadius = '20px';
+            toast.style.fontSize = '0.8rem';
+            toast.style.zIndex = '10001';
+            toast.innerText = "Nomor rekening berhasil disalin!";
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
         }
 
-        // Timer Function
         const targetDate = new Date("Dec 25, 2026 08:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const gap = targetDate - now;
             if (gap > 0) {
-                document.getElementById('d').innerText = Math.floor(gap / (1000 * 60 * 60 * 24));
-                document.getElementById('h').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('m').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('s').innerText = Math.floor((gap % (1000 * 60)) / 1000);
+                document.getElementById('d').innerText = Math.floor(gap / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('h').innerText = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('m').innerText = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('s').innerText = Math.floor((gap % (1000 * 60)) / 1000).toString().padStart(2, '0');
             }
         }, 1000);
 
-        // WA Form
         document.getElementById('waForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const n = document.getElementById('nama').value;
@@ -374,18 +387,17 @@
             window.open(`https://wa.me/6285811927625?text=Halo Romeo %26 Juliet, saya ingin konfirmasi kehadiran.%0A%0ANama: ${n}%0AStatus: ${h}%0APesan: ${p}`);
         });
 
-        // Efek Kelopak Bunga
         function createPetals() {
             const container = document.getElementById('petals-container');
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 const petal = document.createElement('div');
                 petal.className = 'petal';
-                const size = Math.random() * 15 + 10 + 'px';
+                const size = Math.random() * 12 + 8 + 'px';
                 petal.style.width = size;
                 petal.style.height = size;
                 petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.animationDuration = Math.random() * 4 + 4 + 's';
+                petal.style.animationDelay = Math.random() * 4 + 's';
                 container.appendChild(petal);
             }
         }
